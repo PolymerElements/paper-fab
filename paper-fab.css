@@ -29,6 +29,7 @@
   padding: 8px;
 }
 
-core-icon::shadow path {
+core-icon::shadow path,
+core-icon::shadow circle {
   fill: #fff;
 }
