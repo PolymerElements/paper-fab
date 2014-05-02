@@ -24,9 +24,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link href="../polymer/polymer.html" rel="import">
 <link href="../core-icon/core-icon.html" rel="import">
+<link href="../paper-focusable/paper-focusable.html" rel="import">
 <link href="../paper-shadow/paper-shadow.html" rel="import">
 
-<polymer-element name="paper-fab" attributes="src icon" tabindex="-1" on-down="{{downAction}}" on-up="{{upAction}}">
+<polymer-element name="paper-fab" extends="paper-focusable" attributes="src icon">
 
   <template>
 
@@ -63,14 +64,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       icon: '',
 
       z: 1,
-      pressed: false,
 
-      downAction: function() {
-        this.z = 2;
+      focusedChanged: function() {
+        if (this.focused) {
+          this.classList.add('paper-shadow-animate-z-1-z-2');
+        } else {
+          this.classList.remove('paper-shadow-animate-z-1-z-2');
+        }
       },
 
-      upAction: function() {
-        this.z = 1;
+      pressedChanged: function() {
+        if (this.pressed) {
+          this.z = 2;
+        } else {
+          this.z = 1;
+        }
       }
 
     });

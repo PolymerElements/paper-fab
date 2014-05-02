@@ -4,6 +4,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#master",
     "core-icon": "Polymer/core-icon#master",
+    "paper-focusable": "Polymer/paper-focusable#master",
     "paper-shadow": "Polymer/paper-shadow#master"
   }
 }
