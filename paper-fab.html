@@ -23,64 +23,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link href="../polymer/polymer.html" rel="import">
-<link href="../core-icon/core-icon.html" rel="import">
-<link href="../paper-focusable/paper-focusable.html" rel="import">
-<link href="../paper-shadow/paper-shadow.html" rel="import">
+<link href="../paper-icon-button/paper-icon-button.html" rel="import">
 
-<polymer-element name="paper-fab" extends="paper-focusable" attributes="src icon">
+<polymer-element name="paper-fab" extends="paper-icon-button">
 
   <template>
 
     <link href="paper-fab.css" rel="stylesheet">
 
-    <paper-shadow id="shadow" target="{{}}" z="{{z}}" animated></paper-shadow>
-
-    <core-icon icon="{{icon}}"></core-icon>
+    <shadow></shadow>
 
   </template>
 
   <script>
     Polymer('paper-fab', {
 
-      /**
-       * The URL of an image for the icon.  Should not use `icon` property
-       * if you are using this property.
-       *
-       * @attribute src
-       * @type string
-       * @default ''
-       */
-      src: '',
-      
-      /**
-       * Specifies the icon name or index in the set of icons available in
-       * the icon set.  Should not use `src` property if you are using this
-       * property.
-       *
-       * @attribute icon
-       * @type string
-       * @default ''
-       */
-      icon: '',
+      publish: {
 
-      z: 1,
+        /**
+         * @attribute raisedButton
+         * @type boolean
+         * @default true
+         */
+        raisedButton: {value: true, reflect: true}
 
-      focusedChanged: function() {
-        if (this.focused) {
-          this.classList.add('paper-shadow-animate-z-1-z-2');
-        } else {
-          this.classList.remove('paper-shadow-animate-z-1-z-2');
-        }
       },
 
-      activeChanged: function() {
+      ready: function() {
         this.super();
-        
-        if (this.active) {
-          this.z = 2;
-        } else {
-          this.z = 1;
-        }
+        this.raisedButtonChanged();
       }
 
     });
