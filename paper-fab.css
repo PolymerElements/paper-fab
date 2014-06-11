@@ -4,6 +4,7 @@
   height: 56px;
   background: #d23f31;
   border-radius: 28px;
+  fill: #fff;
 }
 
 :host(.mini) {
@@ -17,11 +18,10 @@
 }
 
 :host /deep/ #icon {
-  fill: #fff;
+  display: block;
   margin: 16px;
 }
 
 :host(.mini) /deep/ #icon {
-  fill: #fff;
   margin: 8px;
 }
