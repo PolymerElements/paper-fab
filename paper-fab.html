@@ -106,13 +106,17 @@ you should ensure that the `aria-label` attribute is set.
         z-index: -1;
       }
 
+      #shadow {
+        border-radius: inherit;
+      }
+
       #icon {
         display: block;
       }
     </style>
 
     <template if="{{raised}}">
-      <paper-shadow id="shadow" z="{{z}}" animated></paper-shadow>
+      <paper-shadow id="shadow" fit animated></paper-shadow>
     </template>
 
     <!-- to position to ripple behind the icon -->
