@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
@@ -16,7 +16,7 @@ Material Design: <a href="http://www.google.com/design/spec/components/buttons.h
 comes in two sizes: regular size and a smaller size by applying the attribute `mini`. When
 the user touches the button, a ripple effect emanates from the center of the button.
 
-You may import `core-icons` to use with this element, or provide an URL to a custom icon.
+You may import `core-icons` to use with this element, or provide a URL to a custom icon.
 See `core-iconset` for more information about how to use a custom icon set.
 
 Example:
@@ -46,135 +46,185 @@ customize the color using this selector:
 
 The opacity of the ripple is not customizable via CSS.
 
-Accessibility
--------------
-
-The button is accessible by default if you use the `icon` property. By default, the
-`aria-label` attribute will be set to the `icon` property. If you use a custom icon,
-you should ensure that the `aria-label` attribute is set.
-
-    <paper-fab src="star.png" aria-label="star"></paper-fab>
-
 @element paper-fab
-@extends paper-button-base
 @status unstable
 -->
 
-<link href="../polymer/polymer.html" rel="import">
-<link href="../core-icon/core-icon.html" rel="import">
-<link href="../paper-button/paper-button-base.html" rel="import">
-<link href="../paper-ripple/paper-ripple.html" rel="import">
-<link href="../paper-shadow/paper-shadow.html" rel="import">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-icon/core-icon.html">
+<link rel="import" href="../core-focusable/core-focused-state.html">
+<link rel="import" href="../core-focusable/core-disabled-state.html">
+<link rel="import" href="../core-focusable/core-active-state.html">
+<link rel="import" href="../paper-button/paper-button-state.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../layout/layout.html">
 
-<polymer-element name="paper-fab" extends="paper-button-base" attributes="src icon mini" role="button">
+<dom-module id="paper-fab">
+  <link rel="import" type="css" href="../paper-button/paper-button.css">
+  <style>
+    /* TODO(cdata): Currently we are targeting :host([role]) just so that
+       we can bump the specificity slightly. This should be updated when
+       polymer/polymer#1349 is resolved */
+    :host([role]) {
+      display: inline-block;
+      position: relative;
+      outline: none;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
 
+      box-sizing: border-box;
+      min-width: 0;
+      width: 56px;
+      height: 56px;
+      background: #d23f31;
+      color: #fff;
+      border-radius: 50%;
+      padding: 16px;
+
+      z-index: 0;
+    }
+
+    :host([mini]) {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+    }
+
+    :host([disabled]) {
+      color: #c9c9c9;
+    }
+  </style>
   <template>
+    <template is="core-disabled-state" disabled="{{disabled}}"></template>
+    <template is="core-focused-state" focused="{{focused}}" disabled="[[disabled]]"></template>
+    <template is="core-active-state" active="{{active}}" disabled="[[disabled]]" toggle="[[toggle]]"></template>
+    <template is="paper-button-state"
+      elevation="{{elevation}}" toggle="{{toggle}}" raised="true"
+      active="[[active]]" focused="[[focused]]" disabled="[[disabled]]"></template>
 
-    <style>
-      :host {
-        display: inline-block;
-        position: relative;
-        outline: none;
-        -webkit-user-select: none;
-        user-select: none;
-        cursor: pointer;
-        z-index: 0;
-
-        box-sizing: border-box;
-        width: 56px;
-        height: 56px;
-        background: #d23f31;
-        color: #fff;
-        border-radius: 50%;
-        padding: 16px;
-      }
-
-      :host([mini]) {
-        width: 40px;
-        height: 40px;
-        padding: 8px;
-      }
-
-      :host([disabled]) {
-        color: #c9c9c9;
-        pointer-events: none;
-        cursor: auto;
-      }
-
-      #ripple {
-        pointer-events: none;
-        z-index: -1;
-      }
-
-      #shadow {
-        border-radius: inherit;
-        pointer-events: none;
-      }
-
-      #icon {
-        display: block;
-        pointer-events: none;
-      }
-    </style>
-
-    <template if="{{raised}}">
-      <paper-shadow id="shadow" fit animated></paper-shadow>
-    </template>
-
-    <!-- to position to ripple behind the icon -->
-    <core-icon relative id="icon" src="{{src}}" icon="{{icon}}"></core-icon>
-
+    <paper-ripple></paper-ripple>
+    <paper-card class="content fit flex layout vertical center-center" elevation="[[elevation]]" animated>
+      <core-icon id="icon" src="[[src]]" icon="[[icon]]"></core-icon>
+    </paper-card>
   </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'paper-fab',
 
-  <script>
-    Polymer({
-
-      publish: {
-
-        /**
-         * The URL of an image for the icon. If the src property is specified,
-         * the icon property should not be.
-         *
-         * @attribute src
-         * @type string
-         * @default ''
-         */
-        src: '',
-
-        /**
-         * Specifies the icon name or index in the set of icons available in
-         * the icon's icon set. If the icon property is specified,
-         * the src property should not be.
-         *
-         * @attribute icon
-         * @type string
-         * @default ''
-         */
-        icon: '',
-
-        /**
-         * Set this to true to style this is a "mini" FAB.
-         *
-         * @attribute mini
-         * @type boolean
-         * @default false
-         */
-        mini: false,
-
-        raised: true,
-        recenteringTouch: true,
-        fill: false
-
+    properties: {
+      /**
+       * The URL of an image for the icon. If the src property is specified,
+       * the icon property should not be.
+       *
+       * @attribute src
+       * @type string
+       * @default ''
+       */
+      src: {
+        type: String,
+        value: ''
       },
 
-      iconChanged: function(oldIcon) {
-        var label = this.getAttribute('aria-label');
-        if (!label || label === oldIcon) {
-          this.setAttribute('aria-label', this.icon);
-        }
+      /**
+       * Specifies the icon name or index in the set of icons available in
+       * the icon's icon set. If the icon property is specified,
+       * the src property should not be.
+       *
+       * @attribute icon
+       * @type string
+       * @default ''
+       */
+      icon: {
+        type: String,
+        value: ''
+      },
+
+      /**
+       * Set this to true to style this is a "mini" FAB.
+       *
+       * @attribute mini
+       * @type boolean
+       * @default false
+       */
+      mini: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * If true, the user cannot interact with this button.
+       *
+       * @attribute disabled
+       * @type boolean
+       * @default false
+       */
+      disabled: {
+        type: Boolean
+      },
+
+      /**
+       * If true, the button is currently active either because the
+       * user is touching it, or the button is a toggle
+       * and is currently in the active state.
+       *
+       * @attribute active
+       * @type boolean
+       * @default false
+       */
+      active: {
+        type: Boolean
+      },
+
+      /**
+       * If true, the button currently has focus.
+       *
+       * @attribute focused
+       * @type boolean
+       * @default false
+       */
+      focused: {
+        type: Boolean
+      },
+
+      /**
+       * If true, the button toggles the active state with each tap.
+       * Otherwise, the button becomes active when the user is holding
+       * it down.
+       *
+       * @attribute toggle
+       * @type boolean
+       * @default false
+       */
+      toggle: {
+        type: Boolean
+      },
+
+      /**
+       * If true, the button should be styled with a shadow.
+       *
+       * @attribute raised
+       * @type boolean
+       * @default false
+       */
+      raised: {
+        type: Boolean
+      },
+
+      /**
+       * The elevation of the button, represented as 2dp. Note that this
+       * is a computed property and should be treated as read-only.
+       *
+       * @attribute elevation
+       * @type boolean
+       * @default 0
+       */
+      elevation: {
+        type: Number
       }
+    }
+  });
+</script>
 
-    });
-
-  </script>
-</polymer-element>

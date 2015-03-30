@@ -2,14 +2,17 @@
   "name": "paper-fab",
   "private": true,
   "dependencies": {
-    "polymer": "Polymer/polymer#master",
-    "core-icon": "Polymer/core-icon#master",
-    "core-icons": "Polymer/core-icons#master",
-    "paper-button": "Polymer/paper-button#master",
-    "paper-ripple": "Polymer/paper-ripple#master",
-    "paper-shadow": "Polymer/paper-shadow#master"
+    "polymer": "Polymer/polymer#0.8-preview",
+    "core-icon": "Polymer/core-icon#0.8-preview",
+    "core-icons": "Polymer/core-icons#0.8-preview",
+    "paper-button": "Polymer/paper-button#0.8-preview",
+    "paper-ripple": "Polymer/paper-ripple#0.8-preview",
+    "paper-card": "polymer/paper-card#master",
+    "core-focusable": "polymer/core-focusable#0.8-preview",
+    "layout": "polymer/layout#master"
   },
   "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^1.1.4"
+    "web-component-tester": "Polymer/web-component-tester#^1.1.4",
+    "test-fixture": "polymer/test-fixture#~0.2.0"
   }
 }
