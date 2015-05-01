@@ -55,7 +55,7 @@ The opacity of the ripple is not customizable via CSS.
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-behaviors/paper-button-behavior.html">
 
@@ -107,15 +107,15 @@ The opacity of the ripple is not customizable via CSS.
       mixin(--paper-fab-disabled);
     }
 
-    paper-card {
+    paper-material {
       border-radius: inherit;
     }
   </style>
   <template>
     <paper-ripple></paper-ripple>
-    <paper-card class="content fit flex layout vertical center-center" elevation="[[elevation]]" animated>
+    <paper-material class="content fit flex layout vertical center-center" elevation="[[elevation]]" animated>
       <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
-    </paper-card>
+    </paper-material>
   </template>
 </dom-module>
 <script>
@@ -170,4 +170,3 @@ The opacity of the ripple is not customizable via CSS.
     }
   });
 </script>
-
