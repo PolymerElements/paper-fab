@@ -59,7 +59,7 @@ The opacity of the ripple is not customizable via CSS.
 <link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-behaviors/paper-button-behavior.html">
 
-<style is="x-style">
+<style is="custom-style">
   * {
     --paper-fab-disabled-text: #c9c9c9;
     --paper-fab-disabled-background: var(--accent-color);
@@ -90,7 +90,7 @@ The opacity of the ripple is not customizable via CSS.
 
       z-index: 0;
 
-      mixin(--paper-fab);
+      @apply(--paper-fab);
     }
 
     :host([mini]) {
@@ -98,13 +98,13 @@ The opacity of the ripple is not customizable via CSS.
       height: 40px;
       padding: 8px;
 
-      mixin(--paper-fab-mini);
+      @apply(--paper-fab-mini);
     }
 
     :host([disabled]) {
       color: var(--paper-fab-disabled-text);
 
-      mixin(--paper-fab-disabled);
+      @apply(--paper-fab-disabled);
     }
 
     paper-material {
@@ -121,8 +121,6 @@ The opacity of the ripple is not customizable via CSS.
 <script>
   Polymer({
     is: 'paper-fab',
-
-    enableCustomStyleProperties: true,
 
     behaviors: [
       Polymer.PaperButtonBehavior
