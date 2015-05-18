@@ -12,11 +12,13 @@ See `iron-iconset` for more information about how to use a custom icon set.
 
 Example:
 
-    <link href="path/to/iron-icons/iron-icons.html" rel="import">
+```html
+<link href="path/to/iron-icons/iron-icons.html" rel="import">
 
-    <paper-fab icon="add"></paper-fab>
-    <paper-fab mini icon="favorite"></paper-fab>
-    <paper-fab src="star.png"></paper-fab>
+<paper-fab icon="add"></paper-fab>
+<paper-fab mini icon="favorite"></paper-fab>
+<paper-fab src="star.png"></paper-fab>
+```
 
 Styling
 -------
@@ -24,15 +26,19 @@ Styling
 Style the button with CSS as you would a normal DOM element. If you are using the icons
 provided by `iron-icons`, the icon will inherit the foreground color of the button.
 
-    /* make a blue "cloud" button */
-    <paper-fab icon="cloud" style="color: blue;"></paper-fab>
+```html
+<!-- make a blue "cloud" button -->
+<paper-fab icon="cloud" style="color: blue;"></paper-fab>
+```
 
 By default, the ripple is the same color as the foreground at 25% opacity. You may
 customize the color using this selector:
 
-    /* make #my-button use a blue ripple instead of foreground color */
-    #my-button::shadow #ripple {
-      color: blue;
-    }
+```css
+/* make #my-button use a blue ripple instead of foreground color */
+#my-button::shadow #ripple {
+  color: blue;
+}
+```
 
 The opacity of the ripple is not customizable via CSS.
