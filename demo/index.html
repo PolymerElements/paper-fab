@@ -18,69 +18,76 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <title>paper-fab demo</title>
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
-  <link rel="import" href="../../paper-styles/classes/typography.html">
+  <link rel="import" href="../../paper-styles/paper-styles.html">
+  <link rel="import" href="../../paper-styles/demo-pages.html">
   <link rel="import" href="../../iron-icons/iron-icons.html">
   <link rel="import" href="../paper-fab.html">
 
   <style is="custom-style">
-
-    body {
-      font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-      font-size: 14px;
-      margin: 0;
-      padding: 24px;
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-      -webkit-touch-callout: none;
-    }
-
-    section {
-      padding: 20px 0;
-    }
-
-    section > div {
-      padding: 14px;
-      font-size: 16px;
+    .horizontal-section {
+      min-width: 200px;
     }
 
     paper-fab {
-      margin-right:2em;
+      display: block;
+      margin-bottom:24px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     paper-fab.blue {
-      --accent-color: #5677fc;
+      --paper-fab-background: var(--paper-light-blue-500);
+    }
+
+    paper-fab.red {
+      --paper-fab-background: var(--paper-red-500);
     }
 
     paper-fab.green {
-      --accent-color: #259b24;
+      --paper-fab-background: var(--paper-green-500);
     }
 
-    paper-fab.yellow {
-      background: #ffeb3b;
+    paper-fab.orange {
+      --paper-fab-background: var(--paper-orange-500);
     }
 
   </style>
 
 </head>
 <body>
+  <div class="horizontal center-justified layout">
+    <div>
+      <h4>Enabled</h4>
+      <div class="horizontal-section">
+        <paper-fab icon="arrow-forward" title="arrow-forward" tabindex="0"></paper-fab>
+        <paper-fab icon="create" title="create" tabindex="0"></paper-fab>
+        <paper-fab icon="favorite" title="heart" tabindex="0"></paper-fab>
+        <paper-fab mini icon="done" title="done" tabindex="0"></paper-fab>
+        <paper-fab mini icon="reply" title="reply" tabindex="0"></paper-fab>
+      </div>
+    </div>
 
-  <section>
+    <div>
+      <h4>Disabled</h4>
+      <div class="horizontal-section">
+        <paper-fab disabled icon="arrow-forward" title="arrow-forward" tabindex="0"></paper-fab>
+        <paper-fab disabled icon="create" title="create" tabindex="0"></paper-fab>
+        <paper-fab disabled icon="favorite" title="heart" tabindex="0"></paper-fab>
+        <paper-fab disabled mini icon="done" title="done" tabindex="0"></paper-fab>
+        <paper-fab disabled mini icon="reply" title="reply" tabindex="0"></paper-fab>
+      </div>
+    </div>
 
-    <div>Regular</div>
-
-    <paper-fab icon="arrow-forward" title="arrow-forward" tabindex="0"></paper-fab>
-    <paper-fab disabled icon="create" class="blue" title="create" tabindex="0"></paper-fab>
-
-  </section>
-
-  <section>
-
-    <div>Mini</div>
-
-    <paper-fab mini icon="done" class="green" title="done" tabindex="0"></paper-fab>
-    <paper-fab mini icon="reply" class="yellow" title="reply" tabindex="0"></paper-fab>
-
-  </section>
-
+    <div>
+      <h4>Colors</h4>
+      <div class="horizontal-section">
+        <paper-fab icon="arrow-forward" title="arrow-forward" tabindex="0" class="blue"></paper-fab>
+        <paper-fab icon="create" title="create" tabindex="0" class="red"></paper-fab>
+        <paper-fab icon="favorite" title="heart" tabindex="0" class="orange"></paper-fab>
+        <paper-fab mini icon="done" title="done" tabindex="0" class="green"></paper-fab>
+        <paper-fab mini icon="reply" title="reply" tabindex="0" class="blue"></paper-fab>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
