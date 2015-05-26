@@ -56,6 +56,7 @@ The opacity of the ripple is not customizable via CSS.
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
@@ -70,6 +71,7 @@ The opacity of the ripple is not customizable via CSS.
 </style>
 
 <dom-module id="paper-fab">
+
   <style>
 
     :host {
@@ -113,61 +115,70 @@ The opacity of the ripple is not customizable via CSS.
     paper-material {
       border-radius: inherit;
     }
+
   </style>
+
   <template>
+
     <paper-ripple></paper-ripple>
     <paper-material class="content fit flex layout vertical center-center" elevation="[[elevation]]" animated>
       <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
     </paper-material>
+
   </template>
-</dom-module>
-<script>
-  Polymer({
-    is: 'paper-fab',
 
-    behaviors: [
-      Polymer.PaperButtonBehavior
-    ],
+  <script>
 
-    properties: {
-      /**
-       * The URL of an image for the icon. If the src property is specified,
-       * the icon property should not be.
-       *
-       * @attribute src
-       * @type string
-       * @default ''
-       */
-      src: {
-        type: String,
-        value: ''
-      },
+    Polymer({
+      is: 'paper-fab',
 
-      /**
-       * Specifies the icon name or index in the set of icons available in
-       * the icon's icon set. If the icon property is specified,
-       * the src property should not be.
-       *
-       * @attribute icon
-       * @type string
-       * @default ''
-       */
-      icon: {
-        type: String,
-        value: ''
-      },
+      behaviors: [
+        Polymer.PaperButtonBehavior
+      ],
 
-      /**
-       * Set this to true to style this is a "mini" FAB.
-       *
-       * @attribute mini
-       * @type boolean
-       * @default false
-       */
-      mini: {
-        type: Boolean,
-        value: false
+      properties: {
+        /**
+         * The URL of an image for the icon. If the src property is specified,
+         * the icon property should not be.
+         *
+         * @attribute src
+         * @type string
+         * @default ''
+         */
+        src: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * Specifies the icon name or index in the set of icons available in
+         * the icon's icon set. If the icon property is specified,
+         * the src property should not be.
+         *
+         * @attribute icon
+         * @type string
+         * @default ''
+         */
+        icon: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * Set this to true to style this is a "mini" FAB.
+         *
+         * @attribute mini
+         * @type boolean
+         * @default false
+         */
+        mini: {
+          type: Boolean,
+          value: false
+        }
+
       }
-    }
-  });
-</script>
+    });
+
+  </script>
+
+</dom-module>
