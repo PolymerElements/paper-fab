@@ -7,10 +7,9 @@
   ],
   "keywords": [
     "web-components",
-    "web-component",
     "polymer",
-    "paper",
-    "button"
+    "button",
+    "control"
   ],
   "main": "paper-fab.html",
   "ignore": [],
