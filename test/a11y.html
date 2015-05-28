@@ -54,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     test('aria-disabled is set', function() {
       assert.ok(f2.hasAttribute('aria-disabled'));
       f2.removeAttribute('disabled');
-      assert.ok(!f2.hasAttribute('aria-disabled'));
+      assert.strictEqual(f2.getAttribute('aria-disabled'), 'false');
     });
 
     test('aria-label is set');
