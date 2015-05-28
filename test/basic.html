@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
   <link rel="import" href="../../test-fixture/test-fixture.html">
-  <link rel="import" href="../../core-icons/core-icons.html">
+  <link rel="import" href="../../iron-icons/iron-icons.html">
   <link rel="import" href="../paper-fab.html">
 
 </head>
@@ -64,8 +64,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('applies an icon specified by the `src` attribute', function() {
-      assert.strictEqual(!!f2.$.icon.usesSrcAttribute, true);
-      assert.ok(f2.$.icon.srcImgElement);
+      assert.strictEqual(f2.$.icon._usesIconset(), false);
+      assert.ok(f2.$.icon._img);
     });
 
     test('renders correctly independent of line height', function() {
