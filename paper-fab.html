@@ -49,6 +49,7 @@ Custom property | Description | Default
 `--paper-fab` | Mixin applied to the button | `{}`
 `--paper-fab-mini` | Mixin applied to a mini button | `{}`
 `--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
+`--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button | `{}`
 
 @group Paper Elements
 @demo demo/index.html
@@ -102,6 +103,10 @@ Custom property | Description | Default
       @apply(--layout-fit);
       @apply(--layout-vertical);
       @apply(--layout-center-center);
+    }
+    
+    iron-icon {
+      @apply(--paper-fab-iron-icon);
     }
 
     .keyboard-focus {
