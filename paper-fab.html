@@ -81,6 +81,8 @@ Custom property | Description | Default
 
       z-index: 0;
 
+      @apply(--layout-vertical);
+      @apply(--layout-center-center);
       @apply(--paper-fab);
     }
 
@@ -98,24 +100,15 @@ Custom property | Description | Default
       @apply(--paper-fab-disabled);
     }
 
-    paper-material {
-      border-radius: inherit;
-      @apply(--layout-fit);
-      @apply(--layout-vertical);
-      @apply(--layout-center-center);
-    }
-    
     iron-icon {
       @apply(--paper-fab-iron-icon);
     }
 
-    .keyboard-focus {
+    :host(.keyboard-focus) {
       background: var(--paper-fab-keyboard-focus-background, --paper-pink-900);
     }
   </style>
-  <template>
-    <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
-  </template>
+  <template><iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon></template>
 </dom-module>
 <script>
   Polymer({
