@@ -57,7 +57,7 @@ Custom property | Description | Default
 -->
 
 <dom-module id="paper-fab">
-  <style>
+  <style include="paper-material">
 
     :host {
       display: inline-block;
@@ -114,10 +114,7 @@ Custom property | Description | Default
     }
   </style>
   <template>
-    <paper-ripple></paper-ripple>
-    <paper-material class$="[[_computeContentClass(receivedFocusFromKeyboard)]]" elevation="[[_elevation]]" animated>
-      <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
-    </paper-material>
+    <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
   </template>
 </dom-module>
 <script>
@@ -168,14 +165,6 @@ Custom property | Description | Default
         value: false,
         reflectToAttribute: true
       }
-    },
-
-    _computeContentClass: function(receivedFocusFromKeyboard) {
-      var className = 'content';
-      if (receivedFocusFromKeyboard) {
-        className += ' keyboard-focus';
-      }
-      return className;
     }
 
   });
