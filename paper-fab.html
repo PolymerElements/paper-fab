@@ -159,8 +159,46 @@ Custom property | Description | Default
         type: Boolean,
         value: false,
         reflectToAttribute: true
+      },
+      /**
+       * The z-depth of this element, from 0-5. Setting to 0 will remove the
+       * shadow, and each increasing number greater than 0 will be "deeper"
+       * than the last.
+       *
+       * @attribute elevation
+       * @type number
+       * @default 1
+       */
+      /* Overrided from PaperButtonBehavior to be compliant with material design specs */
+      elevation: {
+        type: Number,
+        reflectToAttribute: true,
+        value: 1
+      },
+    },
+    
+    ready: function () {
+      this.initialElevation = this.elevation;
+    },
+    
+    /* Overrided from PaperButtonBehavior to be compliant with material design specs */
+    /*
+    * TODO: Is missing the elevation depth 12dp on paper-styles. This should be the chosen one for the active state in case of initial elevation equals 3.
+    */
+    _calculateElevation: function() {
+      var e = this.initialElevation;
+      if (this.disabled) {
+        e = 0;
+      } else if (this.active || this.pressed) {
+        e = this.initialElevation + 2;
+      } else if (this.receivedFocusFromKeyboard) {
+        e = this.initialElevation + 1;
       }
-    }
-
+      /* Handling the limit of existent shadow depth configuration on paper-styles */
+      if (e > 5) {
+        e = 5;
+      }
+      this.elevation = e;
+    },
   });
 </script>
