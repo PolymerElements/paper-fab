@@ -15,7 +15,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/PolymerElements/paper-fab"
+    "url": "git://github.com/PolymerElements/paper-fab.git"
   },
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/PolymerElements/paper-fab",
