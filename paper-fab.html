@@ -13,7 +13,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../paper-behaviors/paper-button-behavior.html">
 <link rel="import" href="../paper-material/paper-material-shared-styles.html">
-<link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-styles/default-theme.html">
 
@@ -53,7 +52,6 @@ Custom property | Description | Default
 
 @group Paper Elements
 @demo demo/index.html
-
 -->
 
 <dom-module id="paper-fab">
@@ -97,6 +95,7 @@ Custom property | Description | Default
       :host([disabled]) {
         color: var(--paper-fab-disabled-text, --paper-grey-500);
         background: var(--paper-fab-disabled-background, --paper-grey-300);
+
         @apply(--paper-fab-disabled);
       }
 
