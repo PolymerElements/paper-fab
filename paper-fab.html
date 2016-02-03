@@ -109,7 +109,8 @@ Custom property | Description | Default
       }
     </style>
 
-    <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <iron-icon id="icon" hidden$="{{!_computeIsIconFab(icon)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <span id="fab-text" hidden$="{{_computeIsIconFab(icon)}}">{{label}}</span>
   </template>
 
   <script>
@@ -147,7 +148,24 @@ Custom property | Description | Default
           type: Boolean,
           value: false,
           reflectToAttribute: true
+        },
+        
+        /**
+         * The label displayed in the badge. The label is centered, and ideally
+         * should have very few characters.
+         */
+        label: {
+          type: String,
+          observer: '_labelChanged'
         }
+      },
+      
+      _labelChanged: function() {
+        this.setAttribute('aria-label', this.label);
+      },
+      
+      _computeIsIconFab: function(icon) {
+        return icon.length > 0;
       }
     });
   </script>
