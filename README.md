@@ -12,9 +12,9 @@ thing! https://github.com/PolymerLabs/tedium/issues
 
 -->
 
-[![Build Status](https://travis-ci.org/PolymerElements/paper-fab.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-fab)
+[![Build status](https://travis-ci.org/PolymerElements/paper-fab.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-fab)
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-fab)_
+_[Demo and API docs](https://elements.polymer-project.org/elements/paper-fab)_
 
 
 ##&lt;paper-fab&gt;
