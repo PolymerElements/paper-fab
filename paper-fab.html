@@ -109,8 +109,8 @@ Custom property | Description | Default
       }
     </style>
 
-    <iron-icon id="icon" hidden$="{{!_computeIsIconFab(icon)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-    <span id="fab-text" hidden$="{{_computeIsIconFab(icon)}}">{{label}}</span>
+    <iron-icon id="icon" hidden$="{{!isIconFab}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <span id="fab-text" hidden$="{{isIconFab}}">{{label}}</span>
   </template>
 
   <script>
@@ -157,6 +157,14 @@ Custom property | Description | Default
         label: {
           type: String,
           observer: '_labelChanged'
+        },
+        
+        /**
+         * This is true if an icon has been set.
+         */
+        isIconFab: {
+          type: Boolean,
+          computed: '_computeIsIconFab(icon, src)'
         }
       },
       
@@ -164,8 +172,8 @@ Custom property | Description | Default
         this.setAttribute('aria-label', this.label);
       },
       
-      _computeIsIconFab: function(icon) {
-        return icon.length > 0;
+      _computeIsIconFab: function(icon, src) {
+        return (icon.length > 0) || (src.length > 0);
       }
     });
   </script>
