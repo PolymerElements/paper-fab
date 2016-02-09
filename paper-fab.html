@@ -103,6 +103,13 @@ Custom property | Description | Default
       iron-icon {
         @apply(--paper-fab-iron-icon);
       }
+      
+      span {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       :host(.keyboard-focus) {
         background: var(--paper-fab-keyboard-focus-background, --paper-pink-900);
@@ -110,7 +117,7 @@ Custom property | Description | Default
     </style>
 
     <iron-icon id="icon" hidden$="{{!isIconFab}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-    <span id="fab-text" hidden$="{{isIconFab}}">{{label}}</span>
+    <span hidden$="{{isIconFab}}">{{label}}</span>
   </template>
 
   <script>

@@ -96,8 +96,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     test('fab displays icon with `icon` and `label` attributes', function(done) {
       Polymer.Base.async(function() {
-        var icon = Polymer.dom(f3.root).querySelector('iron-icon');
-        var text = Polymer.dom(f3.root).querySelector('#fab-text');
+        var icon = f3.$$('iron-icon');
+        var text = f3.$$('span');
         expect(icon).not.to.be.null;
         assert.strictEqual(!!icon.hidden, false);
         assert.strictEqual(!!text.hidden, true);
@@ -109,8 +109,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     test('fab displays icon with `src` and `label` attributes', function(done) {
       Polymer.Base.async(function() {
-        var icon = Polymer.dom(f4.root).querySelector('iron-icon');
-        var text = Polymer.dom(f4.root).querySelector('#fab-text');
+        var icon = f4.$$('iron-icon');
+        var text = f4.$$('span');
         expect(icon).not.to.be.null;
         assert.strictEqual(!!icon.hidden, false);
         assert.strictEqual(!!text.hidden, true);
@@ -122,8 +122,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     test('fab displays label with `label` attribute correctly', function(done) {
       Polymer.Base.async(function() {
-        var icon = Polymer.dom(f5.root).querySelector('iron-icon');
-        var text = Polymer.dom(f5.root).querySelector('#fab-text');
+        var icon = f5.$$('iron-icon');
+        var text = f5.$$('span');
         expect(text).not.to.be.null;
         assert.strictEqual(!!icon.hidden, true);
         assert.strictEqual(!!text.hidden, false);
