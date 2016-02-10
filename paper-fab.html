@@ -116,8 +116,8 @@ Custom property | Description | Default
       }
     </style>
 
-    <iron-icon id="icon" hidden$="{{!isIconFab}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-    <span hidden$="{{isIconFab}}">{{label}}</span>
+    <iron-icon id="icon" hidden$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <span hidden$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
   </template>
 
   <script>
@@ -164,14 +164,6 @@ Custom property | Description | Default
         label: {
           type: String,
           observer: '_labelChanged'
-        },
-        
-        /**
-         * This is true if an icon has been set.
-         */
-        isIconFab: {
-          type: Boolean,
-          computed: '_computeIsIconFab(icon, src)'
         }
       },
       
