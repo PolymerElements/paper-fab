@@ -85,6 +85,10 @@ Custom property | Description | Default
         @apply(--paper-fab);
       }
 
+      [hidden] {
+        display: none !important;
+      }
+
       :host([mini]) {
         width: 40px;
         height: 40px;
@@ -103,12 +107,13 @@ Custom property | Description | Default
       iron-icon {
         @apply(--paper-fab-iron-icon);
       }
-      
+
       span {
         width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-align: center;
       }
 
       :host(.keyboard-focus) {
@@ -156,7 +161,7 @@ Custom property | Description | Default
           value: false,
           reflectToAttribute: true
         },
-        
+
         /**
          * The label displayed in the badge. The label is centered, and ideally
          * should have very few characters.
@@ -166,11 +171,11 @@ Custom property | Description | Default
           observer: '_labelChanged'
         }
       },
-      
+
       _labelChanged: function() {
         this.setAttribute('aria-label', this.label);
       },
-      
+
       _computeIsIconFab: function(icon, src) {
         return (icon.length > 0) || (src.length > 0);
       }
