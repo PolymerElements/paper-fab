@@ -103,13 +103,21 @@ Custom property | Description | Default
       iron-icon {
         @apply(--paper-fab-iron-icon);
       }
+      
+      span {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       :host(.keyboard-focus) {
         background: var(--paper-fab-keyboard-focus-background, --paper-pink-900);
       }
     </style>
 
-    <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <iron-icon id="icon" hidden$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <span hidden$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
   </template>
 
   <script>
@@ -147,7 +155,24 @@ Custom property | Description | Default
           type: Boolean,
           value: false,
           reflectToAttribute: true
+        },
+        
+        /**
+         * The label displayed in the badge. The label is centered, and ideally
+         * should have very few characters.
+         */
+        label: {
+          type: String,
+          observer: '_labelChanged'
         }
+      },
+      
+      _labelChanged: function() {
+        this.setAttribute('aria-label', this.label);
+      },
+      
+      _computeIsIconFab: function(icon, src) {
+        return (icon.length > 0) || (src.length > 0);
       }
     });
   </script>
