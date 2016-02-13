@@ -40,8 +40,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h3>FABs can be enabled or disabled</h3>
     <demo-snippet class="centered-demo">
       <template>
+        <style>
+          paper-fab.label {
+            font-size: 20px;
+          }
+        </style>
         <paper-fab icon="favorite" title="heart"></paper-fab>
         <paper-fab disabled icon="reply" title="reply"></paper-fab>
+        <paper-fab class="label" label="😻" title="heart eyes cat"></paper-fab>
       </template>
     </demo-snippet>
 
@@ -50,6 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template>
         <paper-fab mini icon="favorite" title="heart"></paper-fab>
         <paper-fab mini disabled icon="reply" title="reply"></paper-fab>
+        <paper-fab mini class="label" label="😻" title="heart eyes cat"></paper-fab>
       </template>
     </demo-snippet>
 
