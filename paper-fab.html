@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../paper-behaviors/paper-button-behavior.html">
-<link rel="import" href="../paper-material/paper-material-shared-styles.html">
+<link rel="import" href="../paper-styles/element-styles/paper-material.html">
 <link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-styles/default-theme.html">
 
@@ -57,7 +57,7 @@ Custom property | Description | Default
 
 <dom-module id="paper-fab">
   <template strip-whitespace>
-    <style include="paper-material-shared-styles">
+    <style include="paper-material">
       :host {
         @apply --layout-vertical;
         @apply --layout-center-center;
@@ -121,6 +121,26 @@ Custom property | Description | Default
 
       :host(.keyboard-focus) {
         background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
+      }
+
+      :host([elevation="1"]) {
+        @apply --paper-material-elevation-1;
+      }
+
+      :host([elevation="2"]) {
+        @apply --paper-material-elevation-2;
+      }
+
+      :host([elevation="3"]) {
+        @apply --paper-material-elevation-3;
+      }
+
+      :host([elevation="4"]) {
+        @apply --paper-material-elevation-4;
+      }
+
+      :host([elevation="5"]) {
+        @apply --paper-material-elevation-5;
       }
     </style>
 
