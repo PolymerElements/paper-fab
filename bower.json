@@ -12,7 +12,6 @@
   ],
   "main": "paper-fab.html",
   "ignore": [],
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/PolymerElements/paper-fab.git"
