@@ -24,16 +24,16 @@ See `iron-iconset` for more information about how to use a custom icon set.
         display: inline-block;
         margin: 8px;
       }
-      
+
       paper-fab[mini] {
         --paper-fab-background: #FF5722;
       }
-      
+
       paper-fab[label] {
         font-size: 20px;
         --paper-fab-background: #2196F3;
       }
-      
+
       .container {
         display: flex;
         align-items: center;
@@ -54,4 +54,4 @@ See `iron-iconset` for more information about how to use a custom icon set.
 ```
 
 ### Changes in 2.0
-- Implementation detail: `paper-material` has been replaced with the shared style in `paper-styles/element-styles/paper-material.html`. 
+- Implementation detail: `paper-material` has been replaced with the shared style in `paper-styles/element-styles/paper-material-styles.html`. 
