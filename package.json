@@ -1,0 +1,10 @@
+{
+  "name": "@polymer/paper-fab",
+  "private": true,
+  "description": "A material design floating action button",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-fab.git"
+  },
+  "license": "BSD-3-Clause"
+}
