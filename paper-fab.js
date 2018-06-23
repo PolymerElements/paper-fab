@@ -1,4 +1,4 @@
-<!--
+/**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -6,17 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
-<link rel="import" href="../paper-styles/element-styles/paper-material-styles.html">
-<link rel="import" href="../paper-styles/color.html">
-<link rel="import" href="../paper-styles/default-theme.html">
-
-<!--
+*/
+/**
 Material design: [Floating Action Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
 
 `paper-fab` is a floating action button. It contains an image placed in the center and
@@ -53,10 +44,26 @@ Custom property | Description | Default
 
 @group Paper Elements
 @demo demo/index.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="paper-fab">
-  <template strip-whitespace>
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/iron-icon/iron-icon.js';
+import { PaperButtonBehavior } from '@polymer/paper-behaviors/paper-button-behavior.js';
+import '@polymer/paper-styles/element-styles/paper-material-styles.js';
+import '@polymer/paper-styles/color.js';
+import '@polymer/paper-styles/default-theme.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+const $_documentContainer = document.createElement('template');
+$_documentContainer.setAttribute('style', 'display: none;');
+
+$_documentContainer.innerHTML = `<dom-module id="paper-fab">
+  <template strip-whitespace="">
     <style include="paper-material-styles">
       :host {
         @apply --layout-vertical;
@@ -79,7 +86,7 @@ Custom property | Description | Default
         width: 56px;
         z-index: 0;
 
-        /* NOTE: Both values are needed, since some phones require the value `transparent`. */
+        /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
         -webkit-tap-highlight-color: rgba(0,0,0,0);
         -webkit-tap-highlight-color: transparent;
 
@@ -144,49 +151,50 @@ Custom property | Description | Default
       }
     </style>
 
-    <iron-icon id="icon" hidden$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-    <span hidden$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
+    <iron-icon id="icon" hidden\$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <span hidden\$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
   </template>
 
-  <script>
-    Polymer({
-      is: 'paper-fab',
+  
+</dom-module>`;
 
-      behaviors: [Polymer.PaperButtonBehavior],
+document.head.appendChild($_documentContainer.content);
+Polymer({
+  is: 'paper-fab',
 
-      properties: {
-        /**
-         * The URL of an image for the icon. If the src property is specified,
-         * the icon property should not be.
-         */
-        src: {type: String, value: ''},
+  behaviors: [PaperButtonBehavior],
 
-        /**
-         * Specifies the icon name or index in the set of icons available in
-         * the icon's icon set. If the icon property is specified,
-         * the src property should not be.
-         */
-        icon: {type: String, value: ''},
+  properties: {
+    /**
+     * The URL of an image for the icon. If the src property is specified,
+     * the icon property should not be.
+     */
+    src: {type: String, value: ''},
 
-        /**
-         * Set this to true to style this is a "mini" FAB.
-         */
-        mini: {type: Boolean, value: false, reflectToAttribute: true},
+    /**
+     * Specifies the icon name or index in the set of icons available in
+     * the icon's icon set. If the icon property is specified,
+     * the src property should not be.
+     */
+    icon: {type: String, value: ''},
 
-        /**
-         * The label displayed in the badge. The label is centered, and ideally
-         * should have very few characters.
-         */
-        label: {type: String, observer: '_labelChanged'}
-      },
+    /**
+     * Set this to true to style this is a "mini" FAB.
+     */
+    mini: {type: Boolean, value: false, reflectToAttribute: true},
 
-      _labelChanged: function() {
-        this.setAttribute('aria-label', this.label);
-      },
+    /**
+     * The label displayed in the badge. The label is centered, and ideally
+     * should have very few characters.
+     */
+    label: {type: String, observer: '_labelChanged'}
+  },
 
-      _computeIsIconFab: function(icon, src) {
-        return (icon.length > 0) || (src.length > 0);
-      }
-    });
-  </script>
-</dom-module>
+  _labelChanged: function() {
+    this.setAttribute('aria-label', this.label);
+  },
+
+  _computeIsIconFab: function(icon, src) {
+    return (icon.length > 0) || (src.length > 0);
+  }
+});
