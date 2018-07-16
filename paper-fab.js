@@ -1,23 +1,24 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
 import '@polymer/polymer/polymer-legacy.js';
-
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/iron-icon/iron-icon.js';
-import { PaperButtonBehavior } from '@polymer/paper-behaviors/paper-button-behavior.js';
 import '@polymer/paper-styles/element-styles/paper-material-styles.js';
 import '@polymer/paper-styles/color.js';
 import '@polymer/paper-styles/default-theme.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 
+import {PaperButtonBehavior} from '@polymer/paper-behaviors/paper-button-behavior.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
 const template = html`
 <dom-module id="paper-fab">
   <template strip-whitespace="">
@@ -116,14 +117,17 @@ template.setAttribute('style', 'display: none;');
 document.body.appendChild(template.content);
 
 /**
-Material design: [Floating Action Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
+Material design: [Floating Action
+Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
 
-`paper-fab` is a floating action button. It contains an image placed in the center and
-comes in two sizes: regular size and a smaller size by applying the attribute `mini`. When
-the user touches the button, a ripple effect emanates from the center of the button.
+`paper-fab` is a floating action button. It contains an image placed in the
+center and comes in two sizes: regular size and a smaller size by applying the
+attribute `mini`. When the user touches the button, a ripple effect emanates
+from the center of the button.
 
-You may import `iron-icons` to use with this element, or provide a URL to a custom icon.
-See `iron-iconset` for more information about how to use a custom icon set.
+You may import `iron-icons` to use with this element, or provide a URL to a
+custom icon. See `iron-iconset` for more information about how to use a custom
+icon set.
 
 Example:
 
@@ -141,13 +145,17 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-fab-background` | The background color of the button | `--accent-color`
-`--paper-fab-keyboard-focus-background` | The background color of the button when focused | `--paper-pink-900`
-`--paper-fab-disabled-background` | The background color of the button when it's disabled | `--paper-grey-300`
-`--paper-fab-disabled-text` | The text color of the button when it's disabled | `--paper-grey-500`
+`--paper-fab-keyboard-focus-background` | The background color of the button
+when focused | `--paper-pink-900`
+`--paper-fab-disabled-background` | The background color of the button when it's
+disabled | `--paper-grey-300`
+`--paper-fab-disabled-text` | The text color of the button when it's disabled |
+`--paper-grey-500`
 `--paper-fab` | Mixin applied to the button | `{}`
 `--paper-fab-mini` | Mixin applied to a mini button | `{}`
 `--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
-`--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button | `{}`
+`--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button |
+`{}`
 `--paper-fab-label` | Mixin applied to the label within the button | `{}`
 
 @group Paper Elements
