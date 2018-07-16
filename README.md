@@ -1,58 +1,74 @@
+[![Published on NPM](https://img.shields.io/npm/v/@polymer/paper-fab.svg)](https://www.npmjs.com/package/@polymer/paper-fab)
 [![Build status](https://travis-ci.org/PolymerElements/paper-fab.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-fab)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/PolymerElements/paper-fab)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/@polymer/paper-fab)
 
 ## &lt;paper-fab&gt;
-
-Material design: [Floating Action Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
-
 `paper-fab` is a floating action button. It contains an image placed in the center and
 comes in two sizes: regular size and a smaller size by applying the attribute `mini`. When
 the user touches the button, a ripple effect emanates from the center of the button.
 
-You may import `iron-icons` to use with this element, or provide a URL to a custom icon.
-See `iron-iconset` for more information about how to use a custom icon set.
+See: [Documentation](https://www.webcomponents.org/element/@polymer/paper-fab),
+  [Demo](https://www.webcomponents.org/element/@polymer/paper-fab/demo/demo/index.html).
 
-<!---
+## Usage
+
+### Installation
 ```
-<custom-element-demo>
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="paper-fab.html">
-    <link rel="import" href="../iron-icons/iron-icons.html">
-    <custom-style>
-    <style is="custom-style">
-      paper-fab {
-        display: inline-block;
-        margin: 8px;
-      }
-
-      paper-fab[mini] {
-        --paper-fab-background: #FF5722;
-      }
-
-      paper-fab[label] {
-        font-size: 20px;
-        --paper-fab-background: #2196F3;
-      }
-
-      .container {
-        display: flex;
-        align-items: center;
-      }
-    </style>
-    </custom-style>
-    <div class="container">
-      <next-code-block></next-code-block>
-    </div>
-  </template>
-</custom-element-demo>
+npm install --save @polymer/paper-fab
 ```
--->
+
+### In an html file
 ```html
-<paper-fab icon="favorite"></paper-fab>
-<paper-fab mini icon="reply"></paper-fab>
-<paper-fab label="😻"></paper-fab>
+<html>
+  <head>
+    <script type="module">
+      import '@polymer/paper-fab/paper-fab.js';
+      import '@polymer/iron-icons/iron-icons.html';
+    </script>
+  </head>
+  <body>
+    <paper-fab icon="favorite"></paper-fab>
+    <paper-fab label="😻"></paper-fab>
+  </body>
+</html>
 ```
 
-### Changes in 2.0
-- Implementation detail: `paper-material` has been replaced with the shared style in `paper-styles/element-styles/paper-material-styles.html`. 
+### In a Polymer 3 element
+```js
+import {PolymerElement, html} from '@polymer/polymer';
+import '@polymer/paper-fab/paper-fab.js';
+import '@polymer/iron-icons/iron-icons.html';
+
+class SampleElement extends PolymerElement {
+  static get template() {
+    return html`
+    <paper-fab icon="favorite"></paper-fab>
+    <paper-fab label="😻"></paper-fab>
+    `;
+  }
+}
+customElements.define('sample-element', SampleElement);
+```
+
+## Contributing
+If you want to send a PR to this element, here are
+the instructions for running the tests and demo locally:
+
+### Installation
+```sh
+git clone https://github.com/PolymerElements/paper-fab
+cd paper-fab
+npm install
+npm install -g polymer-cli
+```
+
+### Running the demo locally
+```sh
+polymer serve --npm
+open http://127.0.0.1:<port>/demo/
+```
+
+### Running the tests
+```sh
+polymer test --npm
+```
