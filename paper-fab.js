@@ -143,8 +143,7 @@ Custom property | Description | Default
 `--paper-fab-background` | The background color of the button | `--accent-color`
 `--paper-fab-keyboard-focus-background` | The background color of the button when focused | `--paper-pink-900`
 `--paper-fab-disabled-background` | The background color of the button when it's disabled | `--paper-grey-300`
-`--paper-fab-disabled-text` | The text color of the button when it's disabled |
-`--paper-grey-500`
+`--paper-fab-disabled-text` | The text color of the button when it's disabled | `--paper-grey-500`
 `--paper-fab` | Mixin applied to the button | `{}`
 `--paper-fab-mini` | Mixin applied to a mini button | `{}`
 `--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
