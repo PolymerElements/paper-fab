@@ -20,101 +20,97 @@ import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
 const template = html`
-<dom-module id="paper-fab">
-  <template strip-whitespace="">
-    <style include="paper-material-styles">
-      :host {
-        @apply --layout-vertical;
-        @apply --layout-center-center;
+  <style include="paper-material-styles">
+    :host {
+      @apply --layout-vertical;
+      @apply --layout-center-center;
 
-        background: var(--paper-fab-background, var(--accent-color));
-        border-radius: 50%;
-        box-sizing: border-box;
-        color: var(--text-primary-color);
-        cursor: pointer;
-        height: 56px;
-        min-width: 0;
-        outline: none;
-        padding: 16px;
-        position: relative;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-        width: 56px;
-        z-index: 0;
+      background: var(--paper-fab-background, var(--accent-color));
+      border-radius: 50%;
+      box-sizing: border-box;
+      color: var(--text-primary-color);
+      cursor: pointer;
+      height: 56px;
+      min-width: 0;
+      outline: none;
+      padding: 16px;
+      position: relative;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      width: 56px;
+      z-index: 0;
 
-        /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
-        -webkit-tap-highlight-color: transparent;
+      /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
 
-        @apply --paper-fab;
-      }
+      @apply --paper-fab;
+    }
 
-      [hidden] {
-        display: none !important;
-      }
+    [hidden] {
+      display: none !important;
+    }
 
-      :host([mini]) {
-        width: 40px;
-        height: 40px;
-        padding: 8px;
+    :host([mini]) {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
 
-        @apply --paper-fab-mini;
-      }
+      @apply --paper-fab-mini;
+    }
 
-      :host([disabled]) {
-        color: var(--paper-fab-disabled-text, var(--paper-grey-500));
-        background: var(--paper-fab-disabled-background, var(--paper-grey-300));
+    :host([disabled]) {
+      color: var(--paper-fab-disabled-text, var(--paper-grey-500));
+      background: var(--paper-fab-disabled-background, var(--paper-grey-300));
 
-        @apply --paper-fab-disabled;
-      }
+      @apply --paper-fab-disabled;
+    }
 
-      iron-icon {
-        @apply --paper-fab-iron-icon;
-      }
+    iron-icon {
+      @apply --paper-fab-iron-icon;
+    }
 
-      span {
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
+    span {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
 
-        @apply --paper-fab-label;
-      }
+      @apply --paper-fab-label;
+    }
 
-      :host(.keyboard-focus) {
-        background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
-      }
+    :host(.keyboard-focus) {
+      background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
+    }
 
-      :host([elevation="1"]) {
-        @apply --paper-material-elevation-1;
-      }
+    :host([elevation="1"]) {
+      @apply --paper-material-elevation-1;
+    }
 
-      :host([elevation="2"]) {
-        @apply --paper-material-elevation-2;
-      }
+    :host([elevation="2"]) {
+      @apply --paper-material-elevation-2;
+    }
 
-      :host([elevation="3"]) {
-        @apply --paper-material-elevation-3;
-      }
+    :host([elevation="3"]) {
+      @apply --paper-material-elevation-3;
+    }
 
-      :host([elevation="4"]) {
-        @apply --paper-material-elevation-4;
-      }
+    :host([elevation="4"]) {
+      @apply --paper-material-elevation-4;
+    }
 
-      :host([elevation="5"]) {
-        @apply --paper-material-elevation-5;
-      }
-    </style>
+    :host([elevation="5"]) {
+      @apply --paper-material-elevation-5;
+    }
+  </style>
 
-    <iron-icon id="icon" hidden\$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-    <span hidden\$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
-  </template>
-</dom-module>`;
-template.setAttribute('style', 'display: none;');
-document.body.appendChild(template.content);
+  <iron-icon id="icon" hidden\$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+  <span hidden\$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
+`;
+template.setAttribute('strip-whitespace', '');
 
 /**
 Material design: [Floating Action
@@ -145,23 +141,22 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-fab-background` | The background color of the button | `--accent-color`
-`--paper-fab-keyboard-focus-background` | The background color of the button
-when focused | `--paper-pink-900`
-`--paper-fab-disabled-background` | The background color of the button when it's
-disabled | `--paper-grey-300`
+`--paper-fab-keyboard-focus-background` | The background color of the button when focused | `--paper-pink-900`
+`--paper-fab-disabled-background` | The background color of the button when it's disabled | `--paper-grey-300`
 `--paper-fab-disabled-text` | The text color of the button when it's disabled |
 `--paper-grey-500`
 `--paper-fab` | Mixin applied to the button | `{}`
 `--paper-fab-mini` | Mixin applied to a mini button | `{}`
 `--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
-`--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button |
-`{}`
+`--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button | `{}`
 `--paper-fab-label` | Mixin applied to the label within the button | `{}`
 
 @group Paper Elements
 @demo demo/index.html
 */
 Polymer({
+  _template: template,
+
   is: 'paper-fab',
 
   behaviors: [PaperButtonBehavior],
