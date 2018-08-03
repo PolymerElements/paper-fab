@@ -1,21 +1,129 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
+import '@polymer/polymer/polymer-legacy.js';
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/paper-styles/element-styles/paper-material-styles.js';
+import '@polymer/paper-styles/color.js';
+import '@polymer/paper-styles/default-theme.js';
+
+import {PaperButtonBehavior} from '@polymer/paper-behaviors/paper-button-behavior.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
+const template = html`
+  <style include="paper-material-styles">
+    :host {
+      @apply --layout-vertical;
+      @apply --layout-center-center;
+
+      background: var(--paper-fab-background, var(--accent-color));
+      border-radius: 50%;
+      box-sizing: border-box;
+      color: var(--text-primary-color);
+      cursor: pointer;
+      height: 56px;
+      min-width: 0;
+      outline: none;
+      padding: 16px;
+      position: relative;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      width: 56px;
+      z-index: 0;
+
+      /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
+
+      @apply --paper-fab;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    :host([mini]) {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+
+      @apply --paper-fab-mini;
+    }
+
+    :host([disabled]) {
+      color: var(--paper-fab-disabled-text, var(--paper-grey-500));
+      background: var(--paper-fab-disabled-background, var(--paper-grey-300));
+
+      @apply --paper-fab-disabled;
+    }
+
+    iron-icon {
+      @apply --paper-fab-iron-icon;
+    }
+
+    span {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+
+      @apply --paper-fab-label;
+    }
+
+    :host(.keyboard-focus) {
+      background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
+    }
+
+    :host([elevation="1"]) {
+      @apply --paper-material-elevation-1;
+    }
+
+    :host([elevation="2"]) {
+      @apply --paper-material-elevation-2;
+    }
+
+    :host([elevation="3"]) {
+      @apply --paper-material-elevation-3;
+    }
+
+    :host([elevation="4"]) {
+      @apply --paper-material-elevation-4;
+    }
+
+    :host([elevation="5"]) {
+      @apply --paper-material-elevation-5;
+    }
+  </style>
+
+  <iron-icon id="icon" hidden\$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+  <span hidden\$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
+`;
+template.setAttribute('strip-whitespace', '');
+
 /**
-Material design: [Floating Action Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
+Material design: [Floating Action
+Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
 
-`paper-fab` is a floating action button. It contains an image placed in the center and
-comes in two sizes: regular size and a smaller size by applying the attribute `mini`. When
-the user touches the button, a ripple effect emanates from the center of the button.
+`paper-fab` is a floating action button. It contains an image placed in the
+center and comes in two sizes: regular size and a smaller size by applying the
+attribute `mini`. When the user touches the button, a ripple effect emanates
+from the center of the button.
 
-You may import `iron-icons` to use with this element, or provide a URL to a custom icon.
-See `iron-iconset` for more information about how to use a custom icon set.
+You may import `iron-icons` to use with this element, or provide a URL to a
+custom icon. See `iron-iconset` for more information about how to use a custom
+icon set.
 
 Example:
 
@@ -45,121 +153,9 @@ Custom property | Description | Default
 @group Paper Elements
 @demo demo/index.html
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-import '@polymer/polymer/polymer-legacy.js';
-
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import '@polymer/iron-icon/iron-icon.js';
-import { PaperButtonBehavior } from '@polymer/paper-behaviors/paper-button-behavior.js';
-import '@polymer/paper-styles/element-styles/paper-material-styles.js';
-import '@polymer/paper-styles/color.js';
-import '@polymer/paper-styles/default-theme.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-const $_documentContainer = document.createElement('template');
-$_documentContainer.setAttribute('style', 'display: none;');
-
-$_documentContainer.innerHTML = `<dom-module id="paper-fab">
-  <template strip-whitespace="">
-    <style include="paper-material-styles">
-      :host {
-        @apply --layout-vertical;
-        @apply --layout-center-center;
-
-        background: var(--paper-fab-background, var(--accent-color));
-        border-radius: 50%;
-        box-sizing: border-box;
-        color: var(--text-primary-color);
-        cursor: pointer;
-        height: 56px;
-        min-width: 0;
-        outline: none;
-        padding: 16px;
-        position: relative;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-        width: 56px;
-        z-index: 0;
-
-        /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
-        -webkit-tap-highlight-color: transparent;
-
-        @apply --paper-fab;
-      }
-
-      [hidden] {
-        display: none !important;
-      }
-
-      :host([mini]) {
-        width: 40px;
-        height: 40px;
-        padding: 8px;
-
-        @apply --paper-fab-mini;
-      }
-
-      :host([disabled]) {
-        color: var(--paper-fab-disabled-text, var(--paper-grey-500));
-        background: var(--paper-fab-disabled-background, var(--paper-grey-300));
-
-        @apply --paper-fab-disabled;
-      }
-
-      iron-icon {
-        @apply --paper-fab-iron-icon;
-      }
-
-      span {
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-
-        @apply --paper-fab-label;
-      }
-
-      :host(.keyboard-focus) {
-        background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
-      }
-
-      :host([elevation="1"]) {
-        @apply --paper-material-elevation-1;
-      }
-
-      :host([elevation="2"]) {
-        @apply --paper-material-elevation-2;
-      }
-
-      :host([elevation="3"]) {
-        @apply --paper-material-elevation-3;
-      }
-
-      :host([elevation="4"]) {
-        @apply --paper-material-elevation-4;
-      }
-
-      :host([elevation="5"]) {
-        @apply --paper-material-elevation-5;
-      }
-    </style>
-
-    <iron-icon id="icon" hidden\$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-    <span hidden\$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
-  </template>
-
-  
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
 Polymer({
+  _template: template,
+
   is: 'paper-fab',
 
   behaviors: [PaperButtonBehavior],
