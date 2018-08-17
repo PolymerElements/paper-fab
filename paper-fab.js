@@ -127,7 +127,9 @@ icon set.
 
 Example:
 
-    <link href="path/to/iron-icons/iron-icons.html" rel="import">
+    <script type="module">
+      import '@polymer/iron-icons/iron-icons.js';
+    </script>
 
     <paper-fab icon="add"></paper-fab>
     <paper-fab mini icon="favorite"></paper-fab>
