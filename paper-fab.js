@@ -19,99 +19,6 @@ import {PaperButtonBehavior} from '@polymer/paper-behaviors/paper-button-behavio
 import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
-const template = html`
-  <style include="paper-material-styles">
-    :host {
-      @apply --layout-vertical;
-      @apply --layout-center-center;
-
-      background: var(--paper-fab-background, var(--accent-color));
-      border-radius: 50%;
-      box-sizing: border-box;
-      color: var(--text-primary-color);
-      cursor: pointer;
-      height: 56px;
-      min-width: 0;
-      outline: none;
-      padding: 16px;
-      position: relative;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      width: 56px;
-      z-index: 0;
-
-      /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-      -webkit-tap-highlight-color: transparent;
-
-      @apply --paper-fab;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    :host([mini]) {
-      width: 40px;
-      height: 40px;
-      padding: 8px;
-
-      @apply --paper-fab-mini;
-    }
-
-    :host([disabled]) {
-      color: var(--paper-fab-disabled-text, var(--paper-grey-500));
-      background: var(--paper-fab-disabled-background, var(--paper-grey-300));
-
-      @apply --paper-fab-disabled;
-    }
-
-    iron-icon {
-      @apply --paper-fab-iron-icon;
-    }
-
-    span {
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-
-      @apply --paper-fab-label;
-    }
-
-    :host(.keyboard-focus) {
-      background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
-    }
-
-    :host([elevation="1"]) {
-      @apply --paper-material-elevation-1;
-    }
-
-    :host([elevation="2"]) {
-      @apply --paper-material-elevation-2;
-    }
-
-    :host([elevation="3"]) {
-      @apply --paper-material-elevation-3;
-    }
-
-    :host([elevation="4"]) {
-      @apply --paper-material-elevation-4;
-    }
-
-    :host([elevation="5"]) {
-      @apply --paper-material-elevation-5;
-    }
-  </style>
-
-  <iron-icon id="icon" hidden$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-  <span hidden$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
-`;
-template.setAttribute('strip-whitespace', '');
-
 /**
 Material design: [Floating Action
 Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
@@ -156,7 +63,97 @@ Custom property | Description | Default
 @demo demo/index.html
 */
 Polymer({
-  _template: template,
+  _template: html`
+    <style include="paper-material-styles">
+      :host {
+        @apply --layout-vertical;
+        @apply --layout-center-center;
+
+        background: var(--paper-fab-background, var(--accent-color));
+        border-radius: 50%;
+        box-sizing: border-box;
+        color: var(--text-primary-color);
+        cursor: pointer;
+        height: 56px;
+        min-width: 0;
+        outline: none;
+        padding: 16px;
+        position: relative;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        width: 56px;
+        z-index: 0;
+
+        /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+
+        @apply --paper-fab;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      :host([mini]) {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+
+        @apply --paper-fab-mini;
+      }
+
+      :host([disabled]) {
+        color: var(--paper-fab-disabled-text, var(--paper-grey-500));
+        background: var(--paper-fab-disabled-background, var(--paper-grey-300));
+
+        @apply --paper-fab-disabled;
+      }
+
+      iron-icon {
+        @apply --paper-fab-iron-icon;
+      }
+
+      span {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+
+        @apply --paper-fab-label;
+      }
+
+      :host(.keyboard-focus) {
+        background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
+      }
+
+      :host([elevation="1"]) {
+        @apply --paper-material-elevation-1;
+      }
+
+      :host([elevation="2"]) {
+        @apply --paper-material-elevation-2;
+      }
+
+      :host([elevation="3"]) {
+        @apply --paper-material-elevation-3;
+      }
+
+      :host([elevation="4"]) {
+        @apply --paper-material-elevation-4;
+      }
+
+      :host([elevation="5"]) {
+        @apply --paper-material-elevation-5;
+      }
+    </style>
+
+    <iron-icon id="icon" hidden$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+    <span hidden$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
+  `,
 
   is: 'paper-fab',
 
@@ -194,5 +191,9 @@ Polymer({
 
   _computeIsIconFab: function(icon, src) {
     return (icon.length > 0) || (src.length > 0);
+  },
+
+  registered() {
+    this._template.setAttribute('strip-whitespace', '');
   }
 });
