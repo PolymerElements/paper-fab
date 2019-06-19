@@ -59,10 +59,10 @@ Custom property | Description | Default
 `--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button | `{}`
 `--paper-fab-label` | Mixin applied to the label within the button | `{}`
 
-@group Paper Elements
 @demo demo/index.html
 */
 Polymer({
+  /** @override */
   _template: html`
     <style include="paper-material-styles">
       :host {
@@ -193,6 +193,7 @@ Polymer({
     return (icon.length > 0) || (src.length > 0);
   },
 
+  /** @override */
   registered() {
     this._template.setAttribute('strip-whitespace', '');
   }
